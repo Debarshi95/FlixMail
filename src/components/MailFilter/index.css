@@ -1,0 +1,10 @@
+.MailFilter__root {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem 0;
+}
+.MailFilter__root > h3 {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  margin-right: 1rem;
+}
