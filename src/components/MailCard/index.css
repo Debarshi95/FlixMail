@@ -1,0 +1,47 @@
+.MailCard__root {
+  display: flex;
+  background-color: var(--color-background-secondary);
+  padding: 0.5rem 1rem;
+  border: 0.15rem solid var(--color-card-border);
+  border-radius: 0.5rem;
+  flex: 1;
+  margin: 1rem 0;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.MailCard__root:first-child {
+  margin: 0;
+}
+.MailCard__root > h2 {
+  background-color: var(--color-primary);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MailCard__contentContainer {
+  padding: 0 1rem;
+  flex: 1;
+}
+
+.MailCard__contentContainer span {
+  font-weight: 500;
+}
+
+.MailCard__contentContainer p:nth-child(3) {
+  margin: 1rem 0;
+}
+.MailCard__contentAction {
+  display: flex;
+  align-items: center;
+  width: 15rem;
+  justify-content: space-between;
+}
+.MailCard__contentAction p {
+  font-size: 0.9rem;
+}
+.MailCard--read {
+  background-color: var(--color-background-read);
+}
