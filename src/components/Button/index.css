@@ -1,0 +1,32 @@
+.Button__root {
+  height: min-content;
+  border-radius: 2.5rem;
+  padding: 0;
+  padding: 0.5rem 1rem;
+  background: #000;
+  cursor: pointer;
+}
+.Button--contained {
+  background: var(--color-primary);
+  border-radius: 2.5rem;
+  padding: 0.5rem 1.75rem;
+}
+.Button--text {
+  background: transparent;
+}
+.Button--primary {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.Button--textPrimary {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.Button--textSecondary {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+.Button--selected {
+  border: 0.1rem solid var(--color-button-filter);
+}
