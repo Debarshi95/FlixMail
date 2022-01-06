@@ -1,11 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import cn from 'classnames';
+import { getMails } from '../../services/flixApi';
+import { loadFromStorage, persistInStorage } from '../../utils';
+import strings from '../../utils/strings';
 import MailBox from '../../components/MailBox';
 import MailCard from '../../components/MailCard';
 import Button from '../../components/Button';
 import MailFilter from '../../components/MailFilter';
-import { getMails } from '../../services/flixApi';
-import { loadFromStorage, persistInStorage } from '../../utils';
-import strings from '../../utils/strings';
 import './index.css';
 
 const App = () => {
@@ -44,7 +45,7 @@ const App = () => {
       <MailFilter handleMailFilter={handleMailFilter} />
       <article className="App__mailsContainer">
         {mails ? (
-          <section className={`App__mailsCard ${selectedMail ? 'width-min' : ''}`}>
+          <section className={cn('App__mailsCard', { 'width-min': selectedMail })}>
             {mails?.list?.map((mail) => (
               <MailCard mail={mail} key={mail.id} handleMailSelected={memoizedHandleMailSelected}>
                 {selectedMail?.id === mail.id && (

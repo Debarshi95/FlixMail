@@ -1,14 +1,17 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import './index.css';
 
 const Button = ({ children, variant, color, selected, onClick, ...props }) => {
   return (
     <button
       type="button"
-      className={`Button__root Button--${variant} Button--${color} ${
-        selected ? 'Button--selected' : ''
-      }`}
+      className={cn('Button__root', {
+        [`Button--${variant}`]: true,
+        [`Button--${color}`]: true,
+        'Button--selected': selected,
+      })}
       onClick={onClick}
       {...props}
     >
