@@ -26,5 +26,6 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'react/no-danger': 'off',
   },
 };

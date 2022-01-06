@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import { sanitize } from 'dompurify';
 import { getMail } from '../../services/flixApi';
 import { formatDate, getFirstChar } from '../../utils';
 import Button from '../Button';
@@ -15,8 +16,9 @@ const MailBox = ({ mail }) => {
   }, [mail.id]);
 
   const renderHTML = (markup) => {
+    const html = sanitize(markup);
     return {
-      __html: markup,
+      __html: html,
     };
   };
 
@@ -33,7 +35,7 @@ const MailBox = ({ mail }) => {
             Favorite
           </Button>
         </header>
-        <div dangerouslySetInnerHTML={renderHTML(mailData?.body)} />
+        {mailData?.body && <div dangerouslySetInnerHTML={renderHTML(mailData.body)} />}
       </section>
     </article>
   );
