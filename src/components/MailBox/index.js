@@ -4,8 +4,8 @@ import { sanitize } from 'dompurify';
 import { getMail } from '../../services/flixApi';
 import { formatDate, getFirstChar, persistInStorage } from '../../utils';
 import Button from '../Button';
-import './index.css';
 import strings from '../../utils/strings';
+import './index.css';
 
 const MailBox = ({ mail }) => {
   const [mailData, setMailData] = useState();
