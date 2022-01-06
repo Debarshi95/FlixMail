@@ -1,0 +1,10 @@
+.ErrorBoundary__root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ErrorBoundary__root h2 {
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+}
