@@ -1,0 +1,40 @@
+.MailBox__root {
+  flex: 1;
+  border: 0.125rem solid var(--color-card-border);
+  padding: 1rem;
+  background: var(--color-background-secondary);
+  display: flex;
+  margin: 0 0 1rem 1.5rem;
+  border-radius: 0.5rem;
+  position: sticky;
+  top: 4rem;
+  height: min-content;
+  min-height: 100vh;
+}
+
+.MailBox__root > h3 {
+  width: 3.5rem;
+  background: var(--color-primary);
+  display: flex;
+  height: 3rem;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
+.MailBox__container {
+  margin: 0 1.5rem;
+  width: 100%;
+}
+.MailBox__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.MailBox__header h2 {
+  color: var(--color-text-primary);
+}
+
+.MailBox__header p {
+  margin: 1.25rem 0;
+  font-weight: 600;
+}
