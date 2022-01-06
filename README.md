@@ -24,17 +24,15 @@
 
 ## Screenshots
 
+<div align="center">
+
 ![Desktop-1](screenshots/1.png)
 
 ![Desktop-2](screenshots/2.png)
 
 ![Desktop-3](screenshots/3.png)
 
-<br/>
-<br/>
-<div align="center">
-
-![Mobile-1](screenshots/m4.png)
+![Desktop-4](screenshots/4.png)
 
 </div>
 
