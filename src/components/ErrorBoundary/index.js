@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-state */
 import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
@@ -6,6 +5,7 @@ import './index.css';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
+    // eslint-disable-next-line react/no-unused-state
     this.state = { hasError: false, error: null };
   }
 

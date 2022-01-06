@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import {
   formatDate,
   getFirstChar,
@@ -33,7 +34,7 @@ const MailCard = ({ mail, handleMailSelected, children }) => {
 
   return (
     <section
-      className={`MailCard__root ${isRead ? 'MailCard--read' : ''}`}
+      className={cn('MailCard__root', { 'MailCard--read': isRead })}
       onClick={(e) => addToReadList(e, mail)}
       role="button"
       tabIndex={0}
