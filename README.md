@@ -21,6 +21,8 @@
 
 - [ReactJS](https://reactjs.org/) - Frontend framework
 - [DomPurify](https://www.npmjs.com/package/dompurify) - To sanitize dangerous HTML
+- [Classnames](https://www.npmjs.com/package/classnames) - To handle conditional styles effectively
+- [PropTypes](https://www.npmjs.com/package/prop-types) - Runtime type checking for React props and similar objects
 
 ## Screenshots
 
