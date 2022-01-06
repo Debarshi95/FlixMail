@@ -27,5 +27,6 @@ module.exports = {
       },
     ],
     'react/no-danger': 'off',
+    'react/jsx-props-no-spreading': ['error', { exceptions: ['button'] }],
   },
 };
