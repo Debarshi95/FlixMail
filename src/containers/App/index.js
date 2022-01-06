@@ -1,23 +1,72 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import MailBox from '../../components/MailBox';
+import MailCard from '../../components/MailCard';
+import Button from '../../components/Button';
+import MailFilter from '../../components/MailFilter';
+import { getMails } from '../../services/flixApi';
+import { loadFromStorage, persistInStorage } from '../../utils';
 import './index.css';
 
 const App = () => {
+  const [selectedMail, setSelectedMail] = useState(null);
+  const [mails, setMails] = useState(null);
+
+  useEffect(() => {
+    getMails()
+      .then((res) => res.json())
+      .then((data) => setMails(data))
+      .catch((err) => err);
+  }, []);
+
+  const handleMailSelected = (mail) => {
+    setSelectedMail(mail);
+  };
+
+  const memoizedHandleMailSelected = useCallback((args) => handleMailSelected(args), []);
+
+  const handleMailFilter = (filterType) => {
+    if (filterType === 'unread') {
+      getMails()
+        .then((res) => res.json())
+        .then((data) => setMails(data))
+        .catch((err) => err);
+    } else {
+      setMails(loadFromStorage(filterType));
+    }
+
+    setSelectedMail(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App__root">
+      <MailFilter handleMailFilter={handleMailFilter} />
+      <article className="App__mailsContainer">
+        {mails ? (
+          <section className={`App__mailsCard ${selectedMail ? 'width-min' : ''}`}>
+            {mails?.list?.map((mail) => (
+              <MailCard mail={mail} key={mail.id} handleMailSelected={memoizedHandleMailSelected}>
+                {selectedMail?.id === mail.id && (
+                  <Button
+                    variant="text"
+                    color="primary"
+                    id="btn-fav"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      persistInStorage(mail, 'favorites');
+                    }}
+                  >
+                    Favorite
+                  </Button>
+                )}
+              </MailCard>
+            ))}
+          </section>
+        ) : (
+          <h3>No Mails Found</h3>
+        )}
+        {selectedMail && <MailBox mail={selectedMail} />}
+      </article>
+    </main>
   );
 };
 
