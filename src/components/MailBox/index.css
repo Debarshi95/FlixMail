@@ -35,6 +35,9 @@
 }
 
 .MailBox__header p {
-  margin: 1.25rem 0;
+  margin-top: 1rem;
   font-weight: 600;
+}
+.MailBox__container p {
+  margin-bottom: 1rem;
 }

@@ -1,14 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/prop-types */
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button';
+import strings from '../../utils/strings';
+import { toStartCase } from '../../utils';
 import './index.css';
 
 const btns = [
-  { text: 'Unread', variant: 'text', color: 'textPrimary' },
-  { text: 'Read', variant: 'text', color: 'textPrimary' },
-  { text: 'Favorites', variant: 'text', color: 'textPrimary' },
+  { id: 1, text: strings.storageKeys.unread, variant: 'text', color: 'textPrimary' },
+  { id: 2, text: strings.storageKeys.read, variant: 'text', color: 'textPrimary' },
+  { id: 3, text: strings.storageKeys.favorite, variant: 'text', color: 'textPrimary' },
 ];
 
 const MailHeader = ({ handleMailFilter }) => {
@@ -18,24 +18,25 @@ const MailHeader = ({ handleMailFilter }) => {
     setSelectedType(type);
     handleMailFilter(type);
   };
-  const memoizedHandleSelectedType = useCallback((args) => handleSelectedType(args), []);
 
   return (
     <header className="MailFilter__root">
       <h3>Filter By</h3>
-      {btns.map((btn, idx) => (
+      {btns.map((btn) => (
         <Button
-          key={idx}
+          key={btn.id}
           variant={btn.variant}
           color={btn.color}
-          handleSelectedType={memoizedHandleSelectedType}
-          selected={selectedType === btn.text.toLowerCase()}
+          onClick={() => handleSelectedType(btn.text)}
+          selected={selectedType === btn.text}
         >
-          {btn.text}
+          {toStartCase(btn.text)}
         </Button>
       ))}
     </header>
   );
 };
-
+MailHeader.propTypes = {
+  handleMailFilter: PropTypes.func.isRequired,
+};
 export default MailHeader;
