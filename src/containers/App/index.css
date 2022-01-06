@@ -12,3 +12,7 @@
 .width-min {
   max-width: 40%;
 }
+.App__root h3:last-child {
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+}

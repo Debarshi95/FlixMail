@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { memo, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   formatDate,
   getFirstChar,
@@ -7,6 +7,7 @@ import {
   persistInStorage,
   toStartCase,
 } from '../../utils';
+import strings from '../../utils/strings';
 import './index.css';
 
 const MailCard = ({ mail, handleMailSelected, children }) => {
@@ -25,13 +26,13 @@ const MailCard = ({ mail, handleMailSelected, children }) => {
   }, [mail.id]);
 
   const addToReadList = (_, mailItem) => {
-    persistInStorage(mailItem, 'read');
+    persistInStorage(mailItem, strings.storageKeys.read);
     handleMailSelected(mailItem);
     setIsRead(true);
   };
 
   return (
-    <div
+    <section
       className={`MailCard__root ${isRead ? 'MailCard--read' : ''}`}
       onClick={(e) => addToReadList(e, mail)}
       role="button"
@@ -52,8 +53,22 @@ const MailCard = ({ mail, handleMailSelected, children }) => {
           {children}
         </div>
       </article>
-    </div>
+    </section>
   );
 };
 
+MailCard.propTypes = {
+  mail: PropTypes.shape({
+    id: PropTypes.string,
+    from: PropTypes.shape({
+      email: PropTypes.string,
+      name: PropTypes.string,
+    }),
+    date: PropTypes.number,
+    subject: PropTypes.string,
+    short_description: PropTypes.string,
+  }).isRequired,
+  handleMailSelected: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
 export default memo(MailCard);

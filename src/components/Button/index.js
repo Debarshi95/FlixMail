@@ -1,20 +1,15 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import './index.css';
 
-const Button = ({ children, variant, color, selected, handleSelectedType, ...props }) => {
-  const handleOnClick = (item) => {
-    handleSelectedType(item.toLowerCase());
-  };
-
+const Button = ({ children, variant, color, selected, onClick, ...props }) => {
   return (
     <button
       type="button"
       className={`Button__root Button--${variant} Button--${color} ${
         selected ? 'Button--selected' : ''
       }`}
-      onClick={() => handleOnClick(children)}
+      onClick={onClick}
       {...props}
     >
       {children}
@@ -27,6 +22,14 @@ Button.defaultProps = {
   variant: 'contained',
   color: 'textPrimary',
   selected: false,
+};
+
+Button.propTypes = {
+  children: PropTypes.string,
+  variant: PropTypes.string,
+  color: PropTypes.string,
+  selected: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default memo(Button);

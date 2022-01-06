@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import MailFilter from '../../components/MailFilter';
 import { getMails } from '../../services/flixApi';
 import { loadFromStorage, persistInStorage } from '../../utils';
+import strings from '../../utils/strings';
 import './index.css';
 
 const App = () => {
@@ -25,7 +26,8 @@ const App = () => {
   const memoizedHandleMailSelected = useCallback((args) => handleMailSelected(args), []);
 
   const handleMailFilter = (filterType) => {
-    if (filterType === 'unread') {
+    const { unread } = strings.storageKeys;
+    if (filterType === unread) {
       getMails()
         .then((res) => res.json())
         .then((data) => setMails(data))
@@ -49,10 +51,10 @@ const App = () => {
                   <Button
                     variant="text"
                     color="primary"
-                    id="btn-fav"
                     onClick={(e) => {
+                      const { favorite } = strings.storageKeys;
                       e.stopPropagation();
-                      persistInStorage(mail, 'favorites');
+                      persistInStorage(mail, favorite);
                     }}
                   >
                     Favorite

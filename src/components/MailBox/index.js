@@ -1,10 +1,11 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { sanitize } from 'dompurify';
 import { getMail } from '../../services/flixApi';
-import { formatDate, getFirstChar } from '../../utils';
+import { formatDate, getFirstChar, persistInStorage } from '../../utils';
 import Button from '../Button';
 import './index.css';
+import strings from '../../utils/strings';
 
 const MailBox = ({ mail }) => {
   const [mailData, setMailData] = useState();
@@ -31,7 +32,11 @@ const MailBox = ({ mail }) => {
             <h2>{mail.subject}</h2>
             <p>{formatDate(mail.date)}</p>
           </div>
-          <Button variant="contained" color="textSecondary">
+          <Button
+            variant="contained"
+            color="textSecondary"
+            onClick={() => persistInStorage(mail, strings.storageKeys.favorite)}
+          >
             Favorite
           </Button>
         </header>
@@ -39,6 +44,19 @@ const MailBox = ({ mail }) => {
       </section>
     </article>
   );
+};
+
+MailBox.propTypes = {
+  mail: PropTypes.shape({
+    id: PropTypes.string,
+    from: PropTypes.shape({
+      email: PropTypes.string,
+      name: PropTypes.string,
+    }),
+    date: PropTypes.number,
+    subject: PropTypes.string,
+    short_description: PropTypes.string,
+  }).isRequired,
 };
 
 export default MailBox;
