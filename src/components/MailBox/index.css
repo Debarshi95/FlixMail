@@ -41,3 +41,9 @@
 .MailBox__container p {
   margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 600px) {
+  .MailBox__root {
+    margin: 0;
+  }
+}

@@ -16,3 +16,12 @@
   color: var(--color-text-primary);
   font-size: 1.25rem;
 }
+
+@media screen and (max-width: 600px) {
+  .App__mailsContainer {
+    flex-direction: column;
+  }
+  .width-min {
+    max-width: 100%;
+  }
+}
